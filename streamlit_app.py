@@ -1,16 +1,19 @@
 import streamlit as st
 
-# 웹 페이지 제목 설정
-st.title("짝수/홀수 판별기")
+# 1. 웹 앱 제목 설정
+st.title("🔢 재미있는 구구단 프로그램")
+st.subheader("원하는 단을 입력하면 구구단을 출력해 줍니다.")
 
-# 기존 코드: n = int(input())
-# 스트림릿의 number_input을 사용해 자연수를 입력받습니다.
-n = st.number_input("자연수 정숫값을 입력하세요:", min_value=1, step=1, value=1)
+# 서론과 구분선
+st.markdown("---")
 
-# 문제 조건에 맞추어 "even"과 "odd"로 출력하도록 유지 및 수정
-if n % 2 == 0:
-    # 기존 코드: print('짝수')
-    st.write("even")
-else:
-    # 기존 코드: print('홀수')
-    st.write("odd")
+# 2. 사용자로부터 단의 수 입력받기 (기본값 2단, 범위 1단~19단)
+d = st.number_input("출력하고 싶은 단의 수를 입력하세요:", min_value=1, max_value=19, value=2, step=1)
+
+# 3. 버튼을 누르면 구구단이 출력되도록 설정
+if st.button(f"{d}단 출력하기 🚀"):
+    st.success(f"### 🎉 구구단 {d}단 결과")
+    
+    # 반복문을 돌며 웹 화면에 출력
+    for i in range(1, 10):
+        st.write(f"**{d} × {i} = {d * i}**")
